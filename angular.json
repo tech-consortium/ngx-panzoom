@@ -4,7 +4,11 @@
   "newProjectRoot": "projects",
   "cli": {
     "packageManager": "pnpm",
-    "analytics": false
+    "analytics": false,
+    "schematicCollections": [
+      "@angular-eslint/schematics",
+      "@angular-eslint/schematics"
+    ]
   },
   "projects": {
     "ngx-panzoom": {
@@ -23,6 +27,15 @@
             "production": {
               "tsConfig": "projects/ngx-panzoom/tsconfig.lib.prod.json"
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/ngx-panzoom/**/*.ts",
+              "projects/ngx-panzoom/**/*.html"
+            ]
           }
         }
       }
