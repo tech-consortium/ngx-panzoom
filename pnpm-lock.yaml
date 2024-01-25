@@ -59,8 +59,8 @@ devDependencies:
     specifier: ^17.0.5
     version: 17.0.5(@angular/compiler@17.0.5)(typescript@5.2.2)
   '@angular/language-service':
-    specifier: ^17.0.5
-    version: 17.0.5
+    specifier: ^17.1.1
+    version: 17.1.1
   '@types/jasmine':
     specifier: ~5.1.4
     version: 5.1.4
@@ -487,8 +487,8 @@ packages:
       tslib: 2.6.2
       zone.js: 0.14.2
 
-  /@angular/language-service@17.0.5:
-    resolution: {integrity: sha512-tVXYamdjkAYYv4YCiMKxCYqLgvI/g2y2Ny6fUUVPti9xFqiF88q8V7j3N8FeLdSNvgok1LSdfFjJAgQonJ4Sxw==}
+  /@angular/language-service@17.1.1:
+    resolution: {integrity: sha512-ObAf/+LaJZF4FoyFOIeZoTsicioNIx6uJGgH36Tp2G3YYocrzIInLNR0HmwllQYMdEHh54/sW9IvjVe+i++0RQ==}
     engines: {node: ^18.13.0 || >=20.9.0}
     dev: true
 
