@@ -1,5 +1,9 @@
 # Change Log
 
+# 18.0.0
+- Updated for Angular 18.x.x.
+- Moved to ESLint
+
 # 17.0.0
 - Updated for Angular 17.x.x.
 
