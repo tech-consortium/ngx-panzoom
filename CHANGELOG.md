@@ -1,5 +1,9 @@
 # Change Log
 
+#19.0.1
+-Merged [BUG] - Click drag not working anymore #71
+https://github.com/TimUnderhay/ngx-panzoom/issues/71
+
 # 19.0.0
 - Replaced RxJS API with component-based API.
 - Compatible with Angular >= 18.

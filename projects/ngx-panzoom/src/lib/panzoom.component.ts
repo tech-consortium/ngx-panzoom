@@ -41,7 +41,7 @@ import {
 })
 export class PanZoomComponent implements OnInit, AfterViewInit, OnDestroy, PanZoomConfigSignalOptions {
   constructor (private zone: NgZone) {}
-  
+
   private readonly frameElementRef = viewChild.required<ElementRef>('frameElement');
   private readonly panElementRef = viewChild.required<ElementRef>('panElement');
   private readonly zoomElementRef = viewChild.required<ElementRef>('zoomElement');
@@ -221,17 +221,15 @@ export class PanZoomComponent implements OnInit, AfterViewInit, OnDestroy, PanZo
         if (this.isMobile) {
           this.frameElementRef().nativeElement.addEventListener('touchstart', this.onTouchStart);
         }
-        else {
-          this.frameElementRef().nativeElement.addEventListener('mousedown', this.onMouseDown);
-          this.frameElementRef().nativeElement.addEventListener('dblclick', this.onDblClick );
-          this.frameElementRef().nativeElement.addEventListener(
-            'wheel',
-            (event: WheelEvent) => this.animationFrameFunc(
-              () => this.onMouseWheel(event)
-            ),
-            { passive: true }
-          );
-        }
+        this.frameElementRef().nativeElement.addEventListener('mousedown', this.onMouseDown);
+        this.frameElementRef().nativeElement.addEventListener('dblclick', this.onDblClick );
+        this.frameElementRef().nativeElement.addEventListener(
+          'wheel',
+          (event: WheelEvent) => this.animationFrameFunc(
+            () => this.onMouseWheel(event)
+          ),
+          { passive: true }
+        );
 
       }
     );
@@ -242,17 +240,15 @@ export class PanZoomComponent implements OnInit, AfterViewInit, OnDestroy, PanZo
     if (this.isMobile) {
       this.frameElementRef().nativeElement.removeEventListener('touchstart', this.onTouchStart);
     }
-    else {
-      this.frameElementRef().nativeElement.removeEventListener('mousedown', this.onMouseDown);
-      this.frameElementRef().nativeElement.removeEventListener(
-        'wheel',
-        (event: WheelEvent) => this.animationFrameFunc(
-          () => this.onMouseWheel(event)
-        ),
-        { passive: true }
-      );
-      this.frameElementRef().nativeElement.removeEventListener('dblclick', this.onDblClick);
-    }
+    this.frameElementRef().nativeElement.removeEventListener('mousedown', this.onMouseDown);
+    this.frameElementRef().nativeElement.removeEventListener(
+      'wheel',
+      (event: WheelEvent) => this.animationFrameFunc(
+        () => this.onMouseWheel(event)
+      ),
+      { passive: true }
+    );
+    this.frameElementRef().nativeElement.removeEventListener('dblclick', this.onDblClick);
     if (this.animationId) {
       window.cancelAnimationFrame(this.animationId);
     }
@@ -352,10 +348,8 @@ export class PanZoomComponent implements OnInit, AfterViewInit, OnDestroy, PanZo
               document.addEventListener('touchend', this.onTouchEnd, false);
               document.addEventListener('touchmove', this.onTouchMove, { passive: true, capture: false })
             }
-            else {
-              document.addEventListener('mousemove', this.onMouseMove, { passive: true, capture: false });
-              document.addEventListener('mouseup', this.onMouseUp);
-            }
+            document.addEventListener('mousemove', this.onMouseMove, { passive: true, capture: false });
+            document.addEventListener('mouseup', this.onMouseUp);
           }
         ); // leave this on document
       }
@@ -391,7 +385,7 @@ export class PanZoomComponent implements OnInit, AfterViewInit, OnDestroy, PanZo
       evWrap = event;
     }
     else if (isTouchEvent && event.touches[0].pageX && event.touches[0].pageY) {
-      evWrap = { 
+      evWrap = {
         pageX: event.touches[0].pageX,
         pageY: event.touches[0].pageY
       }
@@ -562,18 +556,16 @@ export class PanZoomComponent implements OnInit, AfterViewInit, OnDestroy, PanZo
             { passive: true, capture: false } as EventListenerExtOptions
           );
         }
-        else {
-          document.removeEventListener(
-            'mousemove',
-            this.onMouseMove,
-            { passive: true, capture: false } as EventListenerExtOptions
-          );
-          document.removeEventListener(
-            'mouseup',
-            this.onMouseUp,
-            { passive: true } as EventListenerExtOptions
-          );
-        }
+        document.removeEventListener(
+          'mousemove',
+          this.onMouseMove,
+          { passive: true, capture: false } as EventListenerExtOptions
+        );
+        document.removeEventListener(
+          'mouseup',
+          this.onMouseUp,
+          { passive: true } as EventListenerExtOptions
+        );
       }
     );
     // Set the overlay to non-blocking again:
@@ -684,7 +676,7 @@ export class PanZoomComponent implements OnInit, AfterViewInit, OnDestroy, PanZo
     // Animation has ended
     if (this.model().isPanning) {
       this.updateModelProp('isPanning', false);
-    } 
+    }
     this.syncBaseFromModel();
     this.scale = this.getCssScale(this.base.zoomLevel);
     this.willChangeNextFrame = true;
@@ -811,8 +803,8 @@ export class PanZoomComponent implements OnInit, AfterViewInit, OnDestroy, PanZo
       }
     );
   }
-  
-  
+
+
   private updateModelProp(key: keyof PanZoomModel, value: PanZoomModel[typeof key]) {
     this.zone.run(
       () => {
@@ -825,8 +817,8 @@ export class PanZoomComponent implements OnInit, AfterViewInit, OnDestroy, PanZo
       }
     );
   }
-  
-  
+
+
   private updateModelPan({ x, y }: { x?: number, y?: number }) {
     this.zone.run(
       () => {
